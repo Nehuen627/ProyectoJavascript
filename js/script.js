@@ -3,49 +3,64 @@ let día;
 let profesionalTrabajando;
 let nombrePaciente;
 let dniPaciente;
+let keyFinal;
+
 function validarProfesional (nombreProfesional) {
-    if (nombreProfesional == "juan carlos" || "maria sol" || "roberto ignacio") {
+    if (nombreProfesional == "juan" || nombreProfesional == "maria" || nombreProfesional == "roberto") {
         alert(`Medico/a ${nombreProfesional} trabaja en este establecimiento`);
-        return profesionalTrabajando = true;
+        profesionalTrabajando = true;
+        return nombreProfesional = nombreProfesional;
     } else {
         alert(`Medico/a ${nombreProfesional} no trabaja en este establecimiento`);
-        return profesionalTrabajando = false;
+        profesionalTrabajando = false;
     }
 }
 
 function turnosAmPm (horario) {
     if (horario == "am") {
-        día = alert(prompt("Qué día desea reservar?").toLowerCase);
-        if (día == "miercoles" || "lunes" || "viernes") {
-            return horarioFinal = alert(prompt("Los horarios disponibles son: 10:00, 10:30, 11:00, 11:30, 12:00. Cuando desea reservar?"));
-        } else if (día == "martes" || "jueves") {
+        día = prompt("Qué día desea reservar?").toLowerCase();
+        if (día == "miercoles" || día == "lunes" || día == "viernes") {
+            horarioFinal = prompt("Los horarios disponibles son: 10:00, 10:30, 11:00, 11:30, 12:00. Cuando desea reservar?");
+            keyFinal = true;
+            return horario = horario;
+        } else if (día == "martes" || día == "jueves") {
             alert(`No hay turnos para el ${día} a la mañana`);
+            keyFinal = false;
         } else {
             alert(`No se puede reservar para el día ${día}`);
+            keyFinal = false;
         }
-    } else if ("pm") {
-        alert(prompt("Qué día desea reservar?").toLowerCase);
-        let día = alert(prompt("Qué día desea reservar?").toLowerCase);
-        if (día == "martes" || "jueves") {
-            return horarioFinal = alert(prompt("Los horarios disponibles son: 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30, 18:00. Cuando desea reservar?"));
-        } else if (día == "miercoles" || "lunes" || "viernes") {
+    } else if(horario == "pm") {
+        día = prompt("Qué día desea reservar?").toLowerCase();
+        if (día == "martes" || día == "jueves") {
+            horarioFinal = prompt("Los horarios disponibles son: 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30, 18:00. Cuando desea reservar?");
+            keyFinal = true;
+            return horario = horario;
+        } else if (día == "miercoles" || día == "lunes" || día == "viernes") {
             alert(`No hay turnos para el ${día} a la tarde`);
+            keyFinal = false;
         } else {
             alert(`No se puede reservar para el día ${día}`);
+            keyFinal = false;
         }
     } else {
         alert("Error: ud no ha seleccionado ni Am, ni Pm");
+        keyFinal = false;
     }
 }
 
-function confirmarDatos (nombrePaciente, dniPaciente) {
+function confirmarDatos () {
+    nombrePaciente = prompt("Ingrese su nombre");
+    dniPaciente = prompt("Ingrese su número de documento");
     alert(`Datos confirmados, ${nombrePaciente} con el dni ${dniPaciente}`);
 }
 
 function confirmaciónTurno () {
     if (profesionalTrabajando == true) {
-        turnosAmPm(prompt("Desea reservar: am o pm?").toLowerCase);
-        alert(`Su turno con ${nombreProfesional} ha sido reservado a nombre de ${nombrePaciente}, dni:${dniPaciente}, para el día ${día} a las ${horarioFinal} ${horario}.`);
+        horario = turnosAmPm(prompt("Desea reservar: am o pm?").toLowerCase());
+        if (keyFinal == true) {
+            alert(`Su turno con ${nombreProfesional} ha sido reservado a nombre de ${nombrePaciente}, dni:${dniPaciente}, para el día ${día} a las ${horarioFinal} ${horario}.`);
+        }
     } else {
         alert(`Error: Datos invalidos o no correspondientes. No se pudo reservar un turno`);
     }
@@ -53,7 +68,7 @@ function confirmaciónTurno () {
 
 
 alert("Bienvenido al sistema de reservas para turnos de odontología");
-confirmarDatos(prompt("Ingrese su nombre"), prompt("Ingrese su número de documento"));
-alert("nuestros profesionales son: juan carlos, maria sol y roberto ignacio. Pero puede consultar si otro médico está habilitado");
-validarProfesional(prompt("Indique el nombre del medico para el turno").toLowerCase);
+confirmarDatos();
+alert("Nuestros profesionales son: juan, maria y roberto.");
+nombreProfesional = validarProfesional(prompt("Indique el nombre del medico para el turno").toLowerCase());
 confirmaciónTurno();
