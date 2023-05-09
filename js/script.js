@@ -66,9 +66,11 @@ function confirmaciónTurno () {
     }
 }
 
-
 alert("Bienvenido al sistema de reservas para turnos de odontología");
 confirmarDatos();
+let turnosReservar = prompt("Cuantos turnos desea reservar?");
 alert("Nuestros profesionales son: juan, maria y roberto.");
-nombreProfesional = validarProfesional(prompt("Indique el nombre del medico para el turno").toLowerCase());
-confirmaciónTurno();
+for (i = 0; i < turnosReservar; i++){
+    nombreProfesional = validarProfesional(prompt("Indique el nombre del medico para el turno").toLowerCase());
+    confirmaciónTurno();
+}
