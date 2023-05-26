@@ -12,7 +12,14 @@ const profesionales = [
     "maria",
     "roberto"
 ]
-const diaAm = [
+const diasSemana = [
+    "lunes",
+    "martes",
+    "miercoles",
+    "jueves",
+    "viernes"
+]
+/* const diaAm = [
     "lunes",
     "miercoles",
     "viernes"
@@ -20,7 +27,7 @@ const diaAm = [
 const diaPm = [
     "martes",
     "jueves"
-]
+] */
 class turnosReservados {
     constructor(dia, horario, horarioFinal, nombreProfesional, nombrePaciente, apellidoPaciente, dniPaciente, confirmado) {
         this.dia = dia;
@@ -57,7 +64,7 @@ function validarProfesional (nombreProfesional) {
 function turnosAmPm (horario) {
     if (horario == "am") {
         dia = prompt("Qué día desea reservar?").toLowerCase();
-        diaDisponible = diaAm.indexOf(dia);
+        diaDisponible = diaAM.indexOf(dia);
         if (diaDisponible >= 0) {
             horarioFinal = prompt("Los horarios disponibles son: 10:00, 10:30, 11:00, 11:30, 12:00. Cuando desea reservar?");
             keyFinal = true;
@@ -68,7 +75,7 @@ function turnosAmPm (horario) {
         }
     } else if(horario == "pm") {
         dia = prompt("Qué día desea reservar?").toLowerCase();
-        diaDisponible = diaPm.indexOf(dia);
+        diaDisponible = diaPM.indexOf(dia);
         if (diaDisponible >= 0) {
             horarioFinal = prompt("Los horarios disponibles son: 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30, 18:00. Cuando desea reservar?");
             keyFinal = true;
@@ -100,6 +107,12 @@ function confirmaciónTurno () {
         alert(`Error: Datos invalidos o no correspondientes. No se pudo reservar un turno`);
     }
 }
+
+//codigo para separar entre los días de la mañana y la tarde
+const diaAM = diasSemana.filter((elemento, indice) => indice % 2 === 0);
+console.log(diaAM)
+const diaPM = diasSemana.filter((elemento, indice) => indice % 2 !== 0);
+console.log(diaPM)
 
 alert("Bienvenido al sistema de reservas para turnos de odontología");
 confirmarDatos();
