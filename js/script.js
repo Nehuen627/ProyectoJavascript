@@ -19,15 +19,6 @@ const diasSemana = [
     "jueves",
     "viernes"
 ]
-/* const diaAm = [
-    "lunes",
-    "miercoles",
-    "viernes"
-]
-const diaPm = [
-    "martes",
-    "jueves"
-] */
 class turnosReservados {
     constructor(dia, horario, horarioFinal, nombreProfesional, nombrePaciente, apellidoPaciente, dniPaciente, confirmado) {
         this.dia = dia;
@@ -108,12 +99,12 @@ function confirmaciónTurno () {
     }
 }
 
-//codigo para separar entre los días de la mañana y la tarde
+//*Codigo para separar entre los días de la mañana y la tarde
 const diaAM = diasSemana.filter((elemento, indice) => indice % 2 === 0);
-console.log(diaAM)
 const diaPM = diasSemana.filter((elemento, indice) => indice % 2 !== 0);
-console.log(diaPM)
 
+
+//*Empieza el proceso del sistema de turnos
 alert("Bienvenido al sistema de reservas para turnos de odontología");
 confirmarDatos();
 const paciente = new pacienteDatos(nombrePaciente, apellidoPaciente, dniPaciente);
