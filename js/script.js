@@ -9,8 +9,8 @@ let profesionalesAyuda = document.getElementById("Profesionales");
 
 function traerDatos() {
     Promise.all([
-        fetch("../json/datosSecretario.json").then(res => res.json()),
-        fetch("../json/profesionales.json").then(res => res.json())
+        fetch("/json/datosSecretario.json").then(res => res.json()),
+        fetch("/json/profesionales.json").then(res => res.json())
     ])
     .then(([datosSecretarioData, profesionalesData]) => {
         datosSecretario = datosSecretarioData;
