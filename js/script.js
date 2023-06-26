@@ -5,7 +5,8 @@ const vitrina = document.getElementById("vitrinaTurnos");
 let profesionalTrabajando;
 const secretarioLogueadoLS = localStorage.getItem('secretarioLogueadoLS');
 let ayudalogin = document.getElementById("AyudaLogin");
-let profesionalesAyuda = document.getElementById("Profesionales");
+let profesionalesAyuda = document.getElementById("ProfesionalesAyuda");
+
 
 function traerDatos() {
     Promise.all([
@@ -15,6 +16,7 @@ function traerDatos() {
     .then(([datosSecretarioData, profesionalesData]) => {
         datosSecretario = datosSecretarioData;
         profesionalesData.profesionales.forEach((item) => profesionales.push(item));
+        profesionalesAyudaDiv();
     })
 }
 
@@ -219,9 +221,11 @@ function recargaTurnos(){
         turnos.forEach((turno, index) => { creadorTarjetasTurnos(turno, index)});
     }
 }
-
-
-
+function profesionalesAyudaDiv(){
+    const ayuda = document.createElement("p");
+    ayuda.innerText = "Profesionales: " + profesionales.join(", ");
+    profesionalesAyuda.appendChild(ayuda);
+}
 
 //*Empieza la ejecución
 profesionalesAyuda.style.display = "none";
@@ -229,13 +233,15 @@ vitrina.style.display = "none";
 traerDatos();
 
 if(secretarioLogueadoLS){
-    console.log("logueado")
+    console.log("logueado");
     ayudalogin.style.display = "none";
     IniciaAgenda();
-    profesionalesAyuda.style.display = "block";
     vitrina.style.display = "block";
+    profesionalesAyuda.style.display = "block";
 } else {
     Login();
 }
 
 recargaTurnos();
+
+
